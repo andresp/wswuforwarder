@@ -55,7 +55,7 @@ namespace WUForwarder
             var response = client.GetAsync(uri).GetAwaiter().GetResult();
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                return (ActionResult)new OkObjectResult(response.Content);
+                return (ActionResult)new OkObjectResult(response.Content.ReadAsStringAsync().GetAwaiter().GetResult());
             }
 
             return new BadRequestObjectResult($"Bad response from WU: {response.StatusCode}. Content: {response.Content}");
