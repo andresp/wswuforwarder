@@ -14,7 +14,7 @@ using WUForwarder.Models;
 
 namespace WUForwarder
 {
-    public static class HttpTrigger
+    public static class ForwardToWu
     {
         static readonly string wuUploadUrl = "http://weatherstation.wunderground.com/weatherstation/updateweatherstation.php";
         static readonly string wuUpdatePreamble = "action=updateraw";
@@ -30,7 +30,7 @@ namespace WUForwarder
         static readonly string wuPressureArg = "baromin";
         static readonly string wuDewPoint = "dewptf";
 
-        [FunctionName("HttpTrigger")]
+        [FunctionName("ForwardToWu")]
         public static IActionResult Run([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequest req, TraceWriter log, ExecutionContext context)
         {
             var config = new ConfigurationBuilder()
